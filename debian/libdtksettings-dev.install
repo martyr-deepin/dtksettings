@@ -1,0 +1,3 @@
+usr/include/libdtk-0.1.0/DSettings/
+usr/lib/*/pkgconfig/dtksettings.pc
+usr/lib/*/libdtksettings.so

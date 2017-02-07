@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>data/settins.json</file>
+    </qresource>
+</RCC>

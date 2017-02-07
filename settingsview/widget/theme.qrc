@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>theme/light/ButtonGroup.theme</file>
+    </qresource>
+</RCC>
