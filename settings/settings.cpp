@@ -173,7 +173,7 @@ void Settings::parseJson(const QByteArray &json)
     for (auto groupJson : mainGroups.toArray()) {
         auto group = Group::fromJson("", groupJson.toObject());
         for (auto option : group->options()) {
-            qDebug() << "add option" << option->key();
+//            qDebug() << "add option" << option->key();
             d->options.insert(option->key(), option);
         }
         d->childGroupKeys << group->key();
@@ -186,7 +186,7 @@ void Settings::parseJson(const QByteArray &json)
         connect(option.data(), &Option::valueChanged,
         this, [ = ](QVariant value) {
             emit d->backend->setOption(option->key(), value);
-            emit d->backend->sync();
+//            emit d->backend->sync();
         });
     }
 }

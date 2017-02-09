@@ -1,6 +1,22 @@
 #include <QCoreApplication>
 
+#include <iostream>
+
+#include <QDebug>
+#include <QFile>
 #include <QCommandLineParser>
+
+#include <settings.h>
+#include <option.h>
+
+
+static QString CppTemplate =
+    "#include <settings.h>\n"
+    "\n"
+    "void GenerateSettingTranslate()\n"
+    "{\n"
+    "%1"
+    "}\n";
 
 int main(int argc, char *argv[])
 {
@@ -14,35 +30,63 @@ int main(int argc, char *argv[])
     parser.addHelpOption();
     parser.addVersionOption();
 
-    //    QCommandLineOption optImageFile(QStringList() << "f" << "file",
-    //                                    DApplication::tr("ISO image file"),
-    //                                    "image-file");
-    //    QCommandLineOption optKey(QStringList() << "k" << "key",
-    //                              DApplication::tr("Communication key"),
-    //                              "key");
-    //    QCommandLineOption optDaemon(QStringList() << "d" << "daemon",
-    //                                 DApplication::tr("Run in background"));
-    //    QCommandLineOption optNoInteractive(QStringList() << "n" << "nointeractive",
-    //                                        DApplication::tr("Do not run gui"));
+    QCommandLineOption outputFileArg(QStringList() << "o" << "output",
+                                     QCoreApplication::tr("Output cpp file"),
+                                     "cpp-file");
+    parser.addOption(outputFileArg);
+    parser.addPositionalArgument("json-file", QCoreApplication::tr("Json file description config"));
+    parser.process(app);
 
-    //    parser.addOption(optDaemon);
-    //    parser.addOption(optNoInteractive);
-    //    parser.addOption(optImageFile);
-    //    parser.addOption(optKey);
-    //    parser.addPositionalArgument("device", DApplication::tr("USB Device"));
-        parser.process(app);
+    if (0 == (parser.optionNames().length() + parser.positionalArguments().length())) {
+        parser.showHelp(0);
+    }
 
-    //    if (parser.isSet(optDaemon)) {
-    //        qDebug() << parser.value(optDaemon)
-    //                 << parser.value(optNoInteractive)
-    //                 << parser.value(optImageFile)
-    //                 << parser.value(optKey)
-    //                 << parser.positionalArguments();
-    //        BootMaker bm;
-    //        qDebug() << "Deepin Boot Maker Backend Started";
+    auto jsonFile = parser.positionalArguments().value(0);
+    auto settings = Dtk::Settings::fromJsonFile(jsonFile);
 
-    //        return app.exec();
-    //    }
+    QMap<QString, QString> transtaleMaps;
+    for (QString key : settings->keys()) {
+        auto codeKey = QString(key).replace(".", "_");
+        auto opt = settings->option(key);
 
-    return app.exec();
+        // add Name
+        if (!opt->name().isEmpty()) {
+            transtaleMaps.insert(codeKey + "Name", opt->name());
+        }
+
+        // add text
+        if (!opt->data("text").toString().isEmpty()) {
+            transtaleMaps.insert(codeKey + "Text", opt->data("text").toString());
+        }
+
+        // add items
+        if (!opt->data("items").toStringList().isEmpty()) {
+            auto items = opt->data("items").toStringList();
+            for (int i = 0; i < items.length(); ++i) {
+                transtaleMaps.insert(codeKey + QString("Text%1").arg(i), items.value(i));
+            }
+        }
+    }
+
+    QString cppCode;
+    for (auto key : transtaleMaps.keys()) {
+        auto stringCode = QString("    auto %1 = Dtk::Settings::tr(\"%2\");\n").arg(key).arg(transtaleMaps.value(key));
+        cppCode.append(stringCode);
+    }
+
+    QString outputCpp = CppTemplate.arg(cppCode);
+
+    if (parser.isSet(outputFileArg)) {
+        QFile outputFile(parser.value(outputFileArg));
+        if (!outputFile.open(QIODevice::WriteOnly)) {
+            qCritical() << "can not open output file!";
+            exit(1);
+        }
+        outputFile.write(outputCpp.toUtf8());
+        outputFile.close();
+    } else {
+        std::cout << outputCpp.toStdString();
+    }
+    return 0;
 }
+

@@ -51,8 +51,6 @@ QMAKE_PKGCONFIG_NAME = DTK_SETTINGS_VIEW
 QMAKE_PKGCONFIG_DESCRIPTION = Deepin Tool Kit Settings UI Header Files
 QMAKE_PKGCONFIG_INCDIR = $$includes.path
 
-
-
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../settings/release/ -ldtksettings
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../settings/debug/ -ldtksettings
 else:unix: LIBS += -L$$OUT_PWD/../settings/ -ldtksettings

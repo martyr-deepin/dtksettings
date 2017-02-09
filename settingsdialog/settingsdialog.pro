@@ -24,7 +24,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += main.cpp\
-        settingsdialog.cpp
+        settingsdialog.cpp \
+    translation.cpp
 
 HEADERS  += settingsdialog.h
 

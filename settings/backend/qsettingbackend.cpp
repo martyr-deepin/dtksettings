@@ -63,6 +63,7 @@ void QSettingBackend::doSetOption(const QString &key, const QVariant &value)
     d->settings->beginGroup(key);
     d->settings->setValue("value", value);
     d->settings->endGroup();
+    d->settings->sync();
     d->writeLock.unlock();
 }
 
