@@ -14,6 +14,7 @@
 #include <QJsonObject>
 #include <QJsonArray>
 #include <QJsonDocument>
+#include <QThread>
 #include <QDebug>
 
 #include "option.h"
@@ -53,13 +54,19 @@ Settings::~Settings()
 void Settings::setBackend(Backend *backend)
 {
     Q_D(Settings);
-    if (nullptr == backend)
+    if (nullptr == backend) {
         return;
+    }
 
-    if (d->backend != nullptr)
+    if (d->backend != nullptr) {
         qWarning() << "set backend to exist " << d->backend;
+    }
 
     d->backend = backend;
+    auto backendWriteThread = new QThread;
+    d->backend->moveToThread(backendWriteThread);
+    backendWriteThread->start();
+
     // load form backend
     loadValue();
 }
@@ -97,8 +104,9 @@ QVariant Settings::value(const QString &key) const
 {
     Q_D(const Settings);
     auto opt = d->options.value(key);
-    if (opt.isNull())
+    if (opt.isNull()) {
         return QVariant();
+    }
 
     return opt->value();
 }
@@ -134,7 +142,7 @@ QVariant Settings::getOption(const QString &key) const
 
 void Settings::setOption(const QString &key, const QVariant &value)
 {
-    Q_D(Settings);
+//    Q_D(Settings);
     option(key)->setValue(value);
 }
 
@@ -176,9 +184,8 @@ void Settings::parseJson(const QByteArray &json)
 
         connect(option.data(), &Option::valueChanged,
         this, [ = ](QVariant value) {
-            qDebug() << "update backend" << option->key();
-            d->backend->setOption(option->key(), value);
-            d->backend->sync();
+            emit d->backend->setOption(option->key(), value);
+            emit d->backend->sync();
         });
     }
 }
@@ -188,11 +195,12 @@ void Settings::loadValue()
     Q_D(Settings);
 
     qDebug() << d->backend;
-    for (auto key: d->backend->keys()) {
+    for (auto key : d->backend->keys()) {
         qDebug() << key;
         auto value = d->backend->getOption(key);
-        if (!value.isValid())
+        if (!value.isValid()) {
             continue;
+        }
 
         option(key)->blockSignals(true);
         option(key)->setValue(value);

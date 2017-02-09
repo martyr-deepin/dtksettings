@@ -92,7 +92,7 @@ QWidget *createShortcutEditOptionHandle(QObject *opt)
     return  optionWidget;
 }
 
-QWidget * createCheckboxOptionHandle(QObject *opt)
+QWidget *createCheckboxOptionHandle(QObject *opt)
 {
     auto option = qobject_cast<Option *>(opt);
     auto value = option->data("text").toString();
@@ -145,7 +145,7 @@ QWidget *createComboBoxOptionHandle(QObject *opt)
     rightWidget->setObjectName("OptionLineEdit");
 
     auto data = option->data("items").toStringList();
-    for (auto item: data){
+    for (auto item : data) {
         rightWidget->addItem(item);
     }
 
@@ -163,13 +163,14 @@ QWidget *createComboBoxOptionHandle(QObject *opt)
         rightWidget->setCurrentIndex(value.toInt());
     });
     option->connect(option, &Option::dataChanged,
-    rightWidget, [ = ](const QString &dataType, const QVariant & value) {
-        if ("items" != dataType)
+    rightWidget, [ = ](const QString & dataType, const QVariant & value) {
+        if ("items" != dataType) {
             return;
+        }
 
         rightWidget->clear();
         auto data = value.toStringList();
-        for (auto item: data){
+        for (auto item : data) {
             rightWidget->addItem(item);
         }
 
@@ -241,7 +242,9 @@ QWidget *createSliderOptionHandle(QObject *opt)
 
     option->connect(rightWidget, &QSlider::valueChanged,
     option, [ = ](int value) {
+        rightWidget->blockSignals(true);
         option->setValue(value);
+        rightWidget->blockSignals(false);
     });
     option->connect(option, &Option::valueChanged,
     rightWidget, [ = ](const QVariant & value) {

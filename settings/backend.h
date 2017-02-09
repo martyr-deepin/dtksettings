@@ -21,16 +21,23 @@ class Backend : public QObject
 {
     Q_OBJECT
 public:
-    explicit Backend(QObject *parent = 0): QObject(parent) {}
+    explicit Backend(QObject *parent = 0): QObject(parent)
+    {
+        connect(this, &Backend::sync, this, &Backend::doSync, Qt::QueuedConnection);
+        connect(this, &Backend::setOption, this, &Backend::doSetOption, Qt::QueuedConnection);
+    }
     virtual ~Backend() {}
-
-    virtual void sync() = 0;
 
     virtual QStringList keys() const = 0;
     virtual QVariant getOption(const QString &key) const = 0;
-    virtual void setOption(const QString &key, const QVariant &value) = 0;
+
+protected:
+    virtual void doSync() = 0;
+    virtual void doSetOption(const QString &key, const QVariant &value) = 0;
 
 signals:
+    void sync();
+    void setOption(const QString &key, const QVariant &value);
     void optionChanged(const QString &key, const QVariant &value);
 };
 

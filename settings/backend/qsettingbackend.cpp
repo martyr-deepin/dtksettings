@@ -32,7 +32,7 @@ QSettingBackend::QSettingBackend(const QString &filepath, QObject *parent) :
 {
     Q_D(QSettingBackend);
 
-    d->settings = new QSettings(filepath, QSettings::NativeFormat);
+    d->settings = new QSettings(filepath, QSettings::NativeFormat, this);
     qDebug() << "create config" <<  d->settings->fileName();
 }
 
@@ -56,7 +56,7 @@ QVariant QSettingBackend::getOption(const QString &key) const
     return value;
 }
 
-void QSettingBackend::setOption(const QString &key, const QVariant &value)
+void QSettingBackend::doSetOption(const QString &key, const QVariant &value)
 {
     Q_D(QSettingBackend);
     d->writeLock.lock();
@@ -66,7 +66,7 @@ void QSettingBackend::setOption(const QString &key, const QVariant &value)
     d->writeLock.unlock();
 }
 
-void QSettingBackend::sync()
+void QSettingBackend::doSync()
 {
     Q_D(QSettingBackend);
     d->settings->sync();

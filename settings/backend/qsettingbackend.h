@@ -24,11 +24,12 @@ public:
     explicit QSettingBackend(const QString &filepath, QObject *parent = 0);
     ~QSettingBackend();
 
-    virtual QStringList keys() const;
+    virtual QStringList keys() const Q_DECL_OVERRIDE;
     virtual QVariant getOption(const QString &key) const Q_DECL_OVERRIDE;
-public slots:
-    virtual void setOption(const QString &key, const QVariant &value) Q_DECL_OVERRIDE;
-    virtual void sync() Q_DECL_OVERRIDE;
+
+protected slots:
+    virtual void doSetOption(const QString &key, const QVariant &value) Q_DECL_OVERRIDE;
+    virtual void doSync() Q_DECL_OVERRIDE;
 
 private:
     QScopedPointer<QSettingBackendPrivate> d_ptr;
