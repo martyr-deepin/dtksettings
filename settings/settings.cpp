@@ -155,6 +155,7 @@ void Settings::sync()
 void Settings::reset()
 {
     Q_D(Settings);
+
     for (auto option : d->options) {
         if (option->canReset()) {
             setOption(option->key(), option->defaultValue());

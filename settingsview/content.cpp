@@ -146,8 +146,9 @@ void Content::updateSettings(QPointer<Dtk::Settings> settings)
             }
 
             for (auto option : subgroup->childOptions()) {
-                if (option->isHidden())
+                if (option->isHidden()) {
                     continue;
+                }
 
                 auto widget = d->widgetFactory->createWidget(option);
                 if (widget) {
@@ -169,7 +170,7 @@ void Content::updateSettings(QPointer<Dtk::Settings> settings)
 
     connect(resetBt, &QPushButton::released,
     this, [ = ]() {
-//        emit reset();
+        settings->reset();
     });
 }
 

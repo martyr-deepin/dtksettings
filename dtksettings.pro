@@ -7,4 +7,5 @@ SUBDIRS +=   \
     settings \
     tester \
     settingsview \
-    settingsdialog
+    settingsdialog \
+    tool
