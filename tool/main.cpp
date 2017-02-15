@@ -8,6 +8,7 @@
 
 #include <settings.h>
 #include <option.h>
+#include <group.h>
 
 
 static QString CppTemplate =
@@ -45,6 +46,28 @@ int main(int argc, char *argv[])
     auto settings = Dtk::Settings::fromJsonFile(jsonFile);
 
     QMap<QString, QString> transtaleMaps;
+
+//    qDebug() << settings->groupKeys();
+    for (QString groupKey : settings->groupKeys()) {
+        auto codeKey = QString(groupKey).replace(".", "_");
+        auto group = settings->group(groupKey);
+//        qDebug() << codeKey << group->name();
+        // add Name
+        if (!group->name().isEmpty()) {
+            transtaleMaps.insert("group_" + codeKey + "Name", group->name());
+        }
+
+        // TODO: only two level
+        for (auto childGroup : group->childGroups()) {
+            auto codeKey = childGroup->key().replace(".", "_");
+//            qDebug() << codeKey << childGroup->name();
+            // add Name
+            if (!childGroup->name().isEmpty()) {
+                transtaleMaps.insert("group_" + codeKey + "Name", childGroup->name());
+            }
+        }
+    }
+
     for (QString key : settings->keys()) {
         auto codeKey = QString(key).replace(".", "_");
         auto opt = settings->option(key);
@@ -68,9 +91,11 @@ int main(int argc, char *argv[])
         }
     }
 
+    transtaleMaps.insert("reset_button_name", "Restore to default");
+
     QString cppCode;
     for (auto key : transtaleMaps.keys()) {
-        auto stringCode = QString("    auto %1 = Dtk::Settings::tr(\"%2\");\n").arg(key).arg(transtaleMaps.value(key));
+        auto stringCode = QString("    auto %1 = QObject::tr(\"%2\");\n").arg(key).arg(transtaleMaps.value(key));
         cppCode.append(stringCode);
     }
 

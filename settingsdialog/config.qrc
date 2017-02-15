@@ -1,5 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file>data/settins.json</file>
+        <file>translations/settingsdialog_zh_CN.qm</file>
+        <file>translations/settingsdialog.qm</file>
     </qresource>
 </RCC>

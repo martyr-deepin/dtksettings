@@ -103,7 +103,9 @@ void Navigation::updateSettings(QPointer<Dtk::Settings> settings)
         first = false;
 
         auto item = new QStandardItem;
-        item->setData(settings->group(groupKey)->name(), Qt::DisplayRole);
+        auto trName = QObject::tr(settings->group(groupKey)->name().toStdString().c_str());
+        qDebug() << settings->group(groupKey)->name() << trName;
+        item->setData(trName, Qt::DisplayRole);
         item->setData(NavigationDelegate::Level1, NavigationDelegate::NavLevelRole);
         item->setData(groupKey, NavigationDelegate::NavKeyRole);
         d->navbarModel->appendRow(item);
@@ -114,7 +116,9 @@ void Navigation::updateSettings(QPointer<Dtk::Settings> settings)
             }
 
             auto item = new QStandardItem;
-            item->setData(subgroup->name(), Qt::DisplayRole);
+            auto trName = QObject::tr(subgroup->name().toStdString().c_str());
+            qDebug() << subgroup->name() << trName;
+            item->setData(trName, Qt::DisplayRole);
             item->setData(NavigationDelegate::Level2, NavigationDelegate::NavLevelRole);
             item->setData(subgroup->key(), NavigationDelegate::NavKeyRole);
             d->navbarModel->appendRow(item);

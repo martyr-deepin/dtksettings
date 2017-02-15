@@ -38,8 +38,8 @@ QWidget *WidgetFactory::createTwoColumHandle(Option *option, QWidget *rightWidge
     optionLayout->setContentsMargins(0, 0, 0, 0);
     optionLayout->setSpacing(0);
 
-    auto label = option->name().toStdString();
-    auto labelWidget = new QLabel(WidgetFactory::tr(label.c_str()));
+    auto trName = QObject::tr(option->name().toStdString().c_str());
+    auto labelWidget = new QLabel(trName);
     labelWidget->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
     labelWidget->setMinimumWidth(150);
     labelWidget->setObjectName("OptionLabel");
@@ -96,7 +96,8 @@ QWidget *createCheckboxOptionHandle(QObject *opt)
 {
     auto option = qobject_cast<Option *>(opt);
     auto value = option->data("text").toString();
-    auto rightWidget = new QCheckBox(WidgetFactory::tr(value.toStdString().c_str()));
+    auto trName = QObject::tr(value.toStdString().c_str());
+    auto rightWidget = new QCheckBox(trName);
     rightWidget->setObjectName("OptionCheckbox");
     rightWidget->setChecked(option->value().toBool());
 
@@ -118,7 +119,8 @@ QWidget *createLineEditOptionHandle(QObject *opt)
 {
     auto option = qobject_cast<Option *>(opt);
     auto value = option->data("text").toString();
-    auto rightWidget = new QLineEdit(WidgetFactory::tr(value.toStdString().c_str()));
+    auto trName = QObject::tr(value.toStdString().c_str());
+    auto rightWidget = new QLineEdit(trName);
     rightWidget->setFixedHeight(24);
     rightWidget->setObjectName("OptionLineEdit");
     rightWidget->setText(option->value().toString());
@@ -146,7 +148,8 @@ QWidget *createComboBoxOptionHandle(QObject *opt)
 
     auto data = option->data("items").toStringList();
     for (auto item : data) {
-        rightWidget->addItem(item);
+        auto trName = QObject::tr(item.toStdString().c_str());
+        rightWidget->addItem(trName);
     }
 
     auto current = option->value().toInt();

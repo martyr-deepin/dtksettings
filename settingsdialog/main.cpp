@@ -9,10 +9,18 @@
 
 #include "settingsdialog.h"
 #include <QApplication>
+#include <QTranslator>
+#include <QFile>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+
+    QString translatePath = ":/translations/settingsdialog_zh_CN.qm";
+    auto translator = new QTranslator(&a);
+    translator->load(translatePath);
+    a.installTranslator(translator);
+
     SettingsDialog w;
     w.setFixedSize(680, 540);
     w.show();

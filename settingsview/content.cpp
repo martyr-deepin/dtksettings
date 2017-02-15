@@ -125,7 +125,8 @@ void Content::updateSettings(QPointer<Dtk::Settings> settings)
     Q_D(Content);
     for (auto groupKey : settings->groupKeys()) {
         auto title = new ContentTitle;
-        title->setTitle(settings->group(groupKey)->name());
+        auto trName = QObject::tr(settings->group(groupKey)->name().toStdString().c_str());
+        title->setTitle(trName);
         title->setProperty("key", groupKey);
 //        d->contentLayout->addSpacing(10);
         d->contentLayout->addWidget(title);
@@ -137,7 +138,8 @@ void Content::updateSettings(QPointer<Dtk::Settings> settings)
                 auto title = new QLabel;
                 title->setObjectName("ContentSubTitleText");
                 title->setFixedHeight(20);
-                title->setText(subgroup->name());
+                auto trName = QObject::tr(subgroup->name().toStdString().c_str());
+                title->setText(trName);
                 title->setProperty("key", subgroup->key());
                 title->setStyleSheet("#ContentSubTitleText{font-weight: normal;font-size: 12px;}");
                 d->contentLayout->addWidget(title);
@@ -159,7 +161,7 @@ void Content::updateSettings(QPointer<Dtk::Settings> settings)
         }
     }
 
-    auto resetBt = new QPushButton(tr("Restore to default"));
+    auto resetBt = new QPushButton(QObject::tr("Restore to default"));
     resetBt->setObjectName("SettingsContentReset");
     resetBt->setFixedSize(310, 36);
 

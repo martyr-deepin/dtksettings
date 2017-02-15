@@ -29,10 +29,12 @@ SOURCES += main.cpp\
 
 HEADERS  += settingsdialog.h
 
-
 RESOURCES += \
     config.qrc
 
+
+TRANSLATIONS += $$PWD/translations/$${TARGET}.ts \
+                $$PWD/translations/$${TARGET}_zh_CN.ts
 
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../settingsview/release/ -ldtksettingsview
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../settingsview/debug/ -ldtksettingsview
