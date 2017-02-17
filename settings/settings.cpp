@@ -187,6 +187,7 @@ void Settings::parseJson(const QByteArray &json)
         this, [ = ](QVariant value) {
             emit d->backend->setOption(option->key(), value);
 //            emit d->backend->sync();
+            emit valueChanged(option->key(), value);
         });
     }
 }

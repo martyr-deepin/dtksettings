@@ -45,6 +45,7 @@ public:
     QVariant getOption(const QString &key) const;
 
 signals:
+    void valueChanged(const QString& key, const QVariant& value);
 
 public slots:
     void setOption(const QString &key, const QVariant &value);
