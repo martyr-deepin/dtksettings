@@ -35,8 +35,8 @@ public:
 signals:
 
 public slots:
-
     static QWidget *createTwoColumHandle(Dtk::Option *option, QWidget *rightWidget);
+
 private:
     QScopedPointer<WidgetFactoryPrivate> d_ptr;
     Q_DECLARE_PRIVATE_D(qGetPtrHelper(d_ptr), WidgetFactory)

@@ -31,7 +31,8 @@ SOURCES += \
     widget/shortcutedit.cpp \
     widget/buttongroup.cpp \
     content.cpp \
-    navigation.cpp
+    navigation.cpp \
+    widget/combobox.cpp
 
 HEADERS +=\
     widget/navigationdelegate.h \
@@ -41,7 +42,8 @@ HEADERS +=\
     widget/buttongroup.h \
     settingsview_global.h \
     content.h \
-    navigation.h
+    navigation.h \
+    widget/combobox.h
 
 includes.path = $${DTK_INCLUDEPATH}/DSettingsView
 includes.files += $${PWD}/*.h

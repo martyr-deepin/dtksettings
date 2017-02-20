@@ -13,9 +13,9 @@
 #include <QMap>
 #include <QFrame>
 #include <QLabel>
+#include <QEvent>
 #include <QCheckBox>
 #include <QLineEdit>
-#include <QComboBox>
 #include <QSlider>
 #include <QSpinBox>
 #include <QGridLayout>
@@ -24,6 +24,7 @@
 
 #include "widget/shortcutedit.h"
 #include "widget/buttongroup.h"
+#include "widget/combobox.h"
 
 DWIDGET_BEGIN_NAMESPACE
 
@@ -142,7 +143,8 @@ QWidget *createLineEditOptionHandle(QObject *opt)
 QWidget *createComboBoxOptionHandle(QObject *opt)
 {
     auto option = qobject_cast<Option *>(opt);
-    auto rightWidget = new QComboBox();
+    auto rightWidget = new ComboBox();
+    rightWidget->setFocusPolicy(Qt::StrongFocus);
     rightWidget->setFixedHeight(24);
     rightWidget->setObjectName("OptionLineEdit");
 
