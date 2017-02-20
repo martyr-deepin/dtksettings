@@ -48,8 +48,13 @@ Navigation::Navigation(QWidget *parent) :
     d->navbar = new QListView(this);
     d->navbar->setObjectName("NavigationBar");
 //    d->navbar->setStyleSheet("#NavigationBar{border: none;}");
-    d->navbar->setFixedWidth(160);
+//    d->navbar->setMinimumWidth(160);
+//    d->navbar->setMaximumWidth(199);
     d->navbar->setContentsMargins(0, 0, 0, 0);
+
+    d->navbar->setSelectionMode(QListView::SingleSelection);
+    d->navbar->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    d->navbar->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
     d->navbarModel = new QStandardItemModel;
 
@@ -69,7 +74,9 @@ Navigation::Navigation(QWidget *parent) :
         }
     });
 
-    setFixedWidth(d->navbar->width() + 1);
+//    setMaximumWidth(200);
+    d->navbar->setFixedWidth(190);
+    setFixedWidth(190 + 1);
 }
 
 Navigation::~Navigation()
@@ -104,7 +111,12 @@ void Navigation::updateSettings(QPointer<Dtk::Settings> settings)
 
         auto item = new QStandardItem;
         auto trName = QObject::tr(settings->group(groupKey)->name().toStdString().c_str());
-        qDebug() << settings->group(groupKey)->name() << trName;
+//        qDebug() << settings->group(groupKey)->name() << trName;
+//        QFont font(item->data(Qt::FontRole).value<QFont>());
+//        QFontMetrics fm(font);
+//        int width = fm.width(trName);
+//        qDebug() << ">>>>>>>>>>> " << font << trName << width;
+
         item->setData(trName, Qt::DisplayRole);
         item->setData(NavigationDelegate::Level1, NavigationDelegate::NavLevelRole);
         item->setData(groupKey, NavigationDelegate::NavKeyRole);
@@ -117,7 +129,11 @@ void Navigation::updateSettings(QPointer<Dtk::Settings> settings)
 
             auto item = new QStandardItem;
             auto trName = QObject::tr(subgroup->name().toStdString().c_str());
-            qDebug() << subgroup->name() << trName;
+//            qDebug() << subgroup->name() << trName;
+//            QFont font(item->data(Qt::FontRole).value<QFont>());
+//            QFontMetrics fm(font);
+//            int width = fm.width(trName);
+//            qDebug() << "<<<<<<<<<<<< " << font << trName << width;
             item->setData(trName, Qt::DisplayRole);
             item->setData(NavigationDelegate::Level2, NavigationDelegate::NavLevelRole);
             item->setData(subgroup->key(), NavigationDelegate::NavKeyRole);
@@ -126,6 +142,9 @@ void Navigation::updateSettings(QPointer<Dtk::Settings> settings)
     }
 
     d->navbar->setCurrentIndex(d->navbarModel->index(0, 0));
+//    this->adjustSize();
+//    d->navbar->setMaximumWidth(200);
+//    this->setFixedWidth(d->navbar->width() + 1);
 }
 
 DWIDGET_END_NAMESPACE

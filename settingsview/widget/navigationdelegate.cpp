@@ -47,12 +47,12 @@ void NavigationDelegate::paint(QPainter *painter, const QStyleOptionViewItem &op
 
     switch (level) {
     case Level1:
-    case Level2:{
+    case Level2: {
         if (isSelected) {
             auto brush =  QColor("#d5edfe");
             painter->fillRect(option.rect, brush);
             auto rect = option.rect;
-            rect.setX(option.rect.x() + option.rect.width()-3);
+            rect.setX(option.rect.x() + option.rect.width() - 3);
             brush =  QColor("#2ca7f8");
             painter->fillRect(rect, brush);
         }
@@ -64,24 +64,30 @@ void NavigationDelegate::paint(QPainter *painter, const QStyleOptionViewItem &op
 
     switch (level) {
     case Level1: {
-        auto pen = isSelected ? QColor("#2ca7f8") :QColor("#00162c");
+        auto pen = isSelected ? QColor("#2ca7f8") : QColor("#00162c");
         painter->setPen(pen);
         auto rect = option.rect.marginsRemoved(QMargins(30, 0, 0, 0));
         auto font = painter->font();
         font.setPixelSize(16);
         font.setWeight(QFont::DemiBold);
         painter->setFont(font);
-        painter->drawText(rect, Qt::AlignLeft | Qt::AlignVCenter, index.data().toString());
+
+        QFontMetrics fm(font);
+        auto text = fm.elidedText(index.data().toString(), Qt::ElideMiddle, 150);
+        painter->drawText(rect, Qt::AlignLeft | Qt::AlignVCenter, text);
         break;
     }
     case Level2: {
-        auto pen = isSelected ? QColor("#2ca7f8") :QColor("#303030");
+        auto pen = isSelected ? QColor("#2ca7f8") : QColor("#303030");
         painter->setPen(pen);
         auto font = painter->font();
         font.setPixelSize(12);
         painter->setFont(font);
+
+        QFontMetrics fm(font);
+        auto text = fm.elidedText(index.data().toString(), Qt::ElideMiddle, 135);
         auto rect = option.rect.marginsRemoved(QMargins(45, 0, 0, 0));
-        painter->drawText(rect, Qt::AlignLeft | Qt::AlignVCenter, index.data().toString());
+        painter->drawText(rect, Qt::AlignLeft | Qt::AlignVCenter, text);
         break;
     }
     case Split:

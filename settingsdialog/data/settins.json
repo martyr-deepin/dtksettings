@@ -2,11 +2,11 @@
     "groups": [
         {
             "key": "base",
-            "name": "Basic settings",
+            "name": "Basic settings long text test",
             "groups": [
                 {
                     "key": "theme",
-                    "name": "Theme",
+                    "name": "Theme long text test",
                     "options": [
                         {
                             "key": "theme",

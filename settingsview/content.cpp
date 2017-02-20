@@ -61,10 +61,12 @@ Content::Content(QWidget *parent) :
     d->contentArea = new QScrollArea;
     d->contentArea->setContentsMargins(0, 0, 0, 0);
     d->contentArea->setWidgetResizable(true);
-    d->contentArea->setStyleSheet("QScrollArea{border: none;}");
+    d->contentArea->setStyleSheet("QScrollArea{border: none; background-color: transparent; }");
 //    d->contentArea->setStyleSheet("QFrame{border: 1px solid red;}");
 
     d->contentFrame = new QWidget(this);
+    d->contentFrame->setObjectName("SettingsContent");
+    d->contentFrame->setStyleSheet("#SettingsContent{border: none; background-color: transparent; }");
     d->contentLayout = new QVBoxLayout(d->contentFrame);
     d->contentLayout->setContentsMargins(20, 0, 0, 0);
     d->contentLayout->setSpacing(0);
