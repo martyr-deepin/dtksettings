@@ -48,8 +48,12 @@ signals:
     void valueChanged(const QString& key, const QVariant& value);
 
 public slots:
-    void setOption(const QString &key, const QVariant &value);
+    //!
+    //! \brief sync
+    //! WARNING: sync will block
     void sync() ;
+
+    void setOption(const QString &key, const QVariant &value);
     void reset() ;
 
 private:

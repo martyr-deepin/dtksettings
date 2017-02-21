@@ -31,8 +31,9 @@ public:
     virtual QStringList keys() const = 0;
     virtual QVariant getOption(const QString &key) const = 0;
 
-protected:
     virtual void doSync() = 0;
+
+protected:
     virtual void doSetOption(const QString &key, const QVariant &value) = 0;
 
 signals:

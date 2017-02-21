@@ -143,13 +143,14 @@ QVariant Settings::getOption(const QString &key) const
 void Settings::setOption(const QString &key, const QVariant &value)
 {
 //    Q_D(Settings);
+//    qDebug() << "set" << key << value;
     option(key)->setValue(value);
 }
 
 void Settings::sync()
 {
     Q_D(Settings);
-    d->backend->sync();
+    d->backend->doSync();
 }
 
 void Settings::reset()
@@ -196,9 +197,9 @@ void Settings::loadValue()
 {
     Q_D(Settings);
 
-    qDebug() << d->backend;
+//    qDebug() << d->backend;
     for (auto key : d->backend->keys()) {
-        qDebug() << key;
+//        qDebug() << key;
         auto value = d->backend->getOption(key);
         if (!value.isValid()) {
             continue;
