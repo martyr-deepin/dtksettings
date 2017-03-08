@@ -87,6 +87,7 @@ QWidget *createShortcutEditOptionHandle(QObject *opt)
             auto modifier = static_cast<Qt::KeyboardModifiers>(keyseqs.value(0).toInt());
             auto key = static_cast<Qt::Key>(keyseqs.value(1).toInt());
             rightWidget->setShortCut(modifier, key);
+            rightWidget->update();
         }
     });
 
@@ -111,6 +112,7 @@ QWidget *createCheckboxOptionHandle(QObject *opt)
     option->connect(option, &Option::valueChanged,
     rightWidget, [ = ](const QVariant & value) {
         rightWidget->setChecked(value.toBool());
+        rightWidget->update();
     });
 
     return  optionWidget;
@@ -135,6 +137,7 @@ QWidget *createLineEditOptionHandle(QObject *opt)
     option->connect(option, &Option::valueChanged,
     rightWidget, [ = ](const QVariant & value) {
         rightWidget->setText(value.toString());
+        rightWidget->update();
     });
 
     return  optionWidget;
@@ -181,6 +184,7 @@ QWidget *createComboBoxOptionHandle(QObject *opt)
 
         auto current = option->value().toInt();
         rightWidget->setCurrentIndex(current);
+        rightWidget->update();
     });
 
     return  optionWidget;
@@ -207,6 +211,7 @@ QWidget *createButtonGroupOptionHandle(QObject *opt)
     option->connect(option, &Option::valueChanged,
     rightWidget, [ = ](const QVariant & value) {
         rightWidget->setCheckedButton(value.toInt());
+        rightWidget->update();
     });
     return  optionWidget;
 }
@@ -228,6 +233,7 @@ QWidget *createSpinButtonOptionHandle(QObject *opt)
     option->connect(option, &Option::valueChanged,
     rightWidget, [ = ](const QVariant & value) {
         rightWidget->setValue(value.toInt());
+        rightWidget->update();
     });
     return  optionWidget;
 }
@@ -254,6 +260,7 @@ QWidget *createSliderOptionHandle(QObject *opt)
     option->connect(option, &Option::valueChanged,
     rightWidget, [ = ](const QVariant & value) {
         rightWidget->setValue(value.toInt());
+        rightWidget->update();
     });
     return  optionWidget;
 }
