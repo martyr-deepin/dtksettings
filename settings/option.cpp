@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Copyright (C) 2016 Deepin Technology Co., Ltd.
  *
  * This program is free software; you can redistribute it and/or modify
@@ -148,7 +148,7 @@ void Option::parseJson(const QString &prefixKey, const QJsonObject &option)
 
 void OptionPrivate::parseJson(const QString &prefixKey, const QJsonObject &option)
 {
-    Q_Q(Option);
+//    Q_Q(Option);
     key = option.value("key").toString();
     Q_ASSERT(!key.isEmpty());
     Q_ASSERT(!prefixKey.isEmpty());

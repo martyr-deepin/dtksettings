@@ -58,7 +58,7 @@ public:
 
 ShortcutEdit::ShortcutEdit(QWidget *parent) : QWidget(parent), d_ptr(new ShortcutEditPrivate(this))
 {
-    Q_D(ShortcutEdit);
+//    Q_D(ShortcutEdit);
     setFixedSize(MAX_WIDTH, MAX_HEIGHT);
     setFocusPolicy(Qt::ClickFocus);
 }
