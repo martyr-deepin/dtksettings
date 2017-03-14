@@ -37,7 +37,7 @@ ContentTitle::ContentTitle(QWidget *parent) :
     d->titleLabel = new QLabel();
     d->titleLabel->setObjectName("ContentTitleText");
     layout->addWidget(d->titleLabel, 0, Qt::AlignLeft);
-    d->titleLabel->setStyleSheet("#ContentTitleText{font-weight: normal; font-size: 14px;}");
+    d->titleLabel->setStyleSheet("#ContentTitleText{font-weight: 550; font-size: 14px;}");
 
     auto lineLabel = new QLabel;
     lineLabel->setObjectName("ContentTitleLine");

@@ -39,21 +39,30 @@ QWidget *WidgetFactory::createTwoColumHandle(Option *option, QWidget *rightWidge
     optionLayout->setContentsMargins(0, 0, 0, 0);
     optionLayout->setSpacing(0);
 
-    auto trName = QObject::tr(option->name().toStdString().c_str());
-    auto labelWidget = new QLabel(trName);
-    labelWidget->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
-    labelWidget->setMinimumWidth(150);
-    labelWidget->setObjectName("OptionLabel");
-    labelWidget->setStyleSheet("#OptionLabel{font-size: 12px;}");
-    optionLayout->addWidget(labelWidget, 0, 0, Qt::AlignRight | Qt::AlignVCenter);
-    optionLayout->setColumnMinimumWidth(0, 110);
-    optionLayout->setHorizontalSpacing(20);
-    optionLayout->setColumnStretch(0, 10);
-    optionLayout->setColumnStretch(1, 100);
 
     rightWidget->setMinimumWidth(240);
     rightWidget->setStyleSheet("QWidget{font-size: 12px;}");
-    optionLayout->addWidget(rightWidget, 0, 1, Qt::AlignLeft | Qt::AlignVCenter);
+
+    if (!option->name().isEmpty()) {
+        optionLayout->setColumnMinimumWidth(0, 110);
+        optionLayout->setHorizontalSpacing(20);
+        optionLayout->setColumnStretch(0, 10);
+        optionLayout->setColumnStretch(1, 100);
+
+        auto trName = QObject::tr(option->name().toStdString().c_str());
+        auto labelWidget = new QLabel(trName);
+        labelWidget->setContentsMargins(5, 0, 0, 0);
+        labelWidget->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+        labelWidget->setMinimumWidth(150);
+        labelWidget->setFixedWidth(160);
+        labelWidget->setObjectName("OptionLabel");
+        labelWidget->setStyleSheet("#OptionLabel{font-size: 12px; }");
+        optionLayout->addWidget(labelWidget, 0, 0, Qt::AlignLeft | Qt::AlignVCenter);
+        optionLayout->addWidget(rightWidget, 0, 1, Qt::AlignLeft | Qt::AlignVCenter);
+    } else {
+        optionLayout->setColumnMinimumWidth(0, 5);
+        optionLayout->addWidget(rightWidget, 0, 1, Qt::AlignLeft | Qt::AlignVCenter);
+    }
 
     return  optionFrame;
 }

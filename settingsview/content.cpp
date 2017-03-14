@@ -132,18 +132,22 @@ void Content::updateSettings(QPointer<Dtk::Settings> settings)
         title->setProperty("key", groupKey);
 //        d->contentLayout->addSpacing(10);
         d->contentLayout->addWidget(title);
-        d->contentLayout->addSpacing(10);
+        d->contentLayout->addSpacing(8);
         d->titles.insert(groupKey, title);
 
         for (auto subgroup : settings->group(groupKey)->childGroups()) {
             if (!subgroup->name().isEmpty()) {
                 auto title = new QLabel;
+                title->setAlignment(Qt::AlignLeft|Qt::AlignVCenter);
                 title->setObjectName("ContentSubTitleText");
                 title->setFixedHeight(20);
                 auto trName = QObject::tr(subgroup->name().toStdString().c_str());
                 title->setText(trName);
                 title->setProperty("key", subgroup->key());
-                title->setStyleSheet("#ContentSubTitleText{font-weight: normal;font-size: 12px;}");
+                title->setStyleSheet("#ContentSubTitleText{font-weight: 520; "
+//                                     "border: 1px solid red; "
+                                     "font-size: 12px;"
+                                     "}");
                 d->contentLayout->addWidget(title);
                 d->contentLayout->addSpacing(10);
                 d->titles.insert(subgroup->key(), title);
@@ -160,6 +164,8 @@ void Content::updateSettings(QPointer<Dtk::Settings> settings)
                     widget->setParent(d->contentFrame);
                 }
             }
+
+            d->contentLayout->addSpacing(4);
         }
     }
 
