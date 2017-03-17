@@ -8,7 +8,7 @@ include($$PWD/../common/lib.pri)
 
 QT       -= gui
 
-TARGET = dtksettings
+TARGET = dtksettings$$VERSIONSUFFIX
 TEMPLATE = lib
 
 DEFINES += SETTINGS_LIBRARY

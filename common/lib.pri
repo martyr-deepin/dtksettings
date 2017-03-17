@@ -1,5 +1,7 @@
 TEMPLATE = lib
-VERSION = 1.0
+VERSION = 0.2.0
+VERSIONSUFFIX=-0-2
+
 CONFIG += c++11 create_pc create_prl no_install_prl
 DEFINES += LIBDTK_LIBRARY
 

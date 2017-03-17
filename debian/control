@@ -5,7 +5,7 @@ Maintainer: Deepin Sysdev <sysdev@deepin.com>
 Build-Depends: debhelper (>= 9), pkg-config, qttools5-dev-tools
 Standards-Version: 3.9.6
 
-Package: libdtksettings
+Package: libdtksettings-0.2
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Multi-Arch: same
@@ -14,15 +14,15 @@ Description: Deepin Tool Kit Settings library
  .
  This package contains the shared libraries.
 
-Package: libdtksettings-dev
+Package: libdtksettings-0.2-dev
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, libdtksettings( =${binary:Version})
+Depends: ${shlibs:Depends}, ${misc:Depends}, libdtksettings-0.2( =${binary:Version})
 Description: Deepin Tool Kit Settings Devel library
  DtkSettings is a powerfull tool to generation config form jsons.
  .
  This package contains the header files and static libraries of DtkBase
 
-Package: libdtksettingsview
+Package: libdtksettingsview-0.2
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Multi-Arch: same
@@ -31,9 +31,9 @@ Description: Deepin Tool Kit Settings UI library
   .
   This package contains the shared libraries.
 
-Package: libdtksettingsview-dev
+Package: libdtksettingsview-0.2-dev
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, libdtksettingsview( =${binary:Version})
+Depends: ${shlibs:Depends}, ${misc:Depends}, libdtksettingsview-0.2( =${binary:Version})
 Description: Deepin Tool Kit Settings UI Devel library
   DtkSettings is a powerfull tool to generation config form jsons.
   .

@@ -36,15 +36,15 @@ RESOURCES += \
 TRANSLATIONS += $$PWD/translations/$${TARGET}.ts \
                 $$PWD/translations/$${TARGET}_zh_CN.ts
 
-win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../settingsview/release/ -ldtksettingsview
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../settingsview/debug/ -ldtksettingsview
-else:unix: LIBS += -L$$OUT_PWD/../settingsview/ -ldtksettingsview
+win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../settingsview/release/ -ldtksettingsview$$VERSIONSUFFIX
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../settingsview/debug/ -ldtksettingsview$$VERSIONSUFFIX
+else:unix: LIBS += -L$$OUT_PWD/../settingsview/ -ldtksettingsview$$VERSIONSUFFIX
 
 INCLUDEPATH += $$PWD/../settingsview
 DEPENDPATH += $$PWD/../settingsview
 
-win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../settings/release/ -ldtksettings
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../settings/debug/ -ldtksettings
+win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../settings/release/ -ldtksettings$$VERSIONSUFFIX
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../settings/debug/ -ldtksettings$$VERSIONSUFFIX
 else:unix: LIBS += -L$$OUT_PWD/../settings/ -ldtksettings
 
 INCLUDEPATH += $$PWD/../settings
