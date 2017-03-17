@@ -3,6 +3,7 @@
 # Project created by QtCreator 2017-01-17T16:44:23
 #
 #-------------------------------------------------
+include($$PWD/../common/lib.pri)
 
 QT       += testlib
 

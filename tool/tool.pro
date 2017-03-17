@@ -1,3 +1,5 @@
+include($$PWD/../common/lib.pri)
+
 QT += core
 QT -= gui
 
