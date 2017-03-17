@@ -1,3 +1,3 @@
 usr/include/libdtk-0.2.0/DSettings/
-usr/lib/*/pkgconfig/dtksettings.pc
+usr/lib/*/pkgconfig/dtksettings-0-2.pc
 usr/lib/*/libdtksettings-0-2.so

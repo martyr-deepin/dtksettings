@@ -45,7 +45,7 @@ DEPENDPATH += $$PWD/../settingsview
 
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../settings/release/ -ldtksettings$$VERSIONSUFFIX
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../settings/debug/ -ldtksettings$$VERSIONSUFFIX
-else:unix: LIBS += -L$$OUT_PWD/../settings/ -ldtksettings
+else:unix: LIBS += -L$$OUT_PWD/../settings/ -ldtksettings$$VERSIONSUFFIX
 
 INCLUDEPATH += $$PWD/../settings
 DEPENDPATH += $$PWD/../settings
