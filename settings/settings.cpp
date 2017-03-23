@@ -200,14 +200,17 @@ void Settings::loadValue()
 //    qDebug() << d->backend;
     for (auto key : d->backend->keys()) {
 //        qDebug() << key;
+
+        qDebug() << "load value for key" << key;
         auto value = d->backend->getOption(key);
-        if (!value.isValid()) {
+        auto opt = option(key);
+        if (!value.isValid() || opt.isNull()) {
             continue;
         }
 
-        option(key)->blockSignals(true);
-        option(key)->setValue(value);
-        option(key)->blockSignals(false);
+        opt->blockSignals(true);
+        opt->setValue(value);
+        opt->blockSignals(false);
     }
 }
 
