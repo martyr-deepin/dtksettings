@@ -31,7 +31,7 @@ DWIDGET_BEGIN_NAMESPACE
 QWidget *WidgetFactory::createTwoColumHandle(Option *option, QWidget *rightWidget)
 {
     auto optionFrame = new QFrame;
-    optionFrame->setFixedHeight(30);
+    optionFrame->setMinimumHeight(30);
     optionFrame->setObjectName("OptionFrame");
 //    optionFrame->setStyleSheet("QFrame{border: 1px solid red;}");
 
@@ -108,11 +108,24 @@ QWidget *createCheckboxOptionHandle(QObject *opt)
     auto option = qobject_cast<Option *>(opt);
     auto value = option->data("text").toString();
     auto trName = QObject::tr(value.toStdString().c_str());
-    auto rightWidget = new QCheckBox(trName);
+
+    auto checkboxFrame = new QWidget;
+    auto checkboxLayout = new QHBoxLayout(checkboxFrame);
+    checkboxLayout->setSpacing(0);
+    checkboxLayout->setContentsMargins(0,0,0,0);
+    auto rightWidget = new QCheckBox("");
+    auto checkboxLabel = new QLabel(trName);
+    checkboxLabel->setWordWrap(true);
+    checkboxLabel->setMinimumWidth(320);
+    checkboxLayout->addWidget(rightWidget);
+    checkboxLayout->addSpacing(5);
+    checkboxLayout->addWidget(checkboxLabel);
+    checkboxLayout->addStretch();
+
     rightWidget->setObjectName("OptionCheckbox");
     rightWidget->setChecked(option->value().toBool());
 
-    auto optionWidget = WidgetFactory::createTwoColumHandle(option, rightWidget);
+    auto optionWidget = WidgetFactory::createTwoColumHandle(option, checkboxFrame);
 
     option->connect(rightWidget, &QCheckBox::stateChanged,
     option, [ = ](int status) {
