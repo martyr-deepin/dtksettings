@@ -6,14 +6,13 @@ Dtk Settings is a module of Dtk, which can generate user config and UI dialog fr
 
 # Dependencies
 
-
 Support platform:
 
-- Deepin 2014/2015
+- Deepin 2015
 
-- Mac OSX 10.12+
+- Mac OS 10.12+
 
-- Windows XP 32/64bit, Windows 7 32/64bit, Windows 8 32/64 bit.
+- Windows 7 32/64bit, Windows 8 32/64 bit.
 
 # Installation
 
@@ -50,7 +49,7 @@ make install
 
 #### Development Environment
 
-- Windows 10 64bit
+- Windows 10
 - Microsoft Visual C++ 2017
 - Qt5.8
 
@@ -78,13 +77,12 @@ export QtInstallPath=/User/yourhome/Qt5.8/5.8/clang_64
 export PATH=$QtInstallPath/bin:$PATH
 ```
 
-### Build Deepin Boot Maker
+### Build and Install
 
 ```
-cd osx
 mkdir build
 cd build
-qmake "LIB_INSTALL_DIR=/usr/local/lib" "INCLUDE_INSTALL_DIR=/usr/local/include" -r .
+qmake "LIB_INSTALL_DIR=/usr/local/lib" "INCLUDE_INSTALL_DIR=/usr/local/include" -r ..
 make
 make install
 ```
