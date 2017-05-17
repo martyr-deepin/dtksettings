@@ -199,9 +199,7 @@ void Settings::loadValue()
 
 //    qDebug() << d->backend;
     for (auto key : d->backend->keys()) {
-//        qDebug() << key;
-
-        qDebug() << "load value for key" << key;
+        //qDebug() << "load value for key" << key;
         auto value = d->backend->getOption(key);
         auto opt = option(key);
         if (!value.isValid() || opt.isNull()) {
