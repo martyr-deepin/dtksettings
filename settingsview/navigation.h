@@ -28,10 +28,10 @@ public:
     explicit Navigation(QWidget *parent = 0);
     ~Navigation();
 
-signals:
+Q_SIGNALS:
     void selectedGroup(const QString &key);
 
-public slots:
+public Q_SLOTS:
     void onSelectGroup(const QString &key);
     void updateSettings(QPointer<Dtk::Settings> settings);
 

@@ -95,7 +95,7 @@ Content::Content(QWidget *parent) :
 
         if (closedTitle) {
 //            qDebug() << "send scrollToGroup" << closedTitle->property("key");
-            emit scrollToGroup(closedTitle->property("key").toString());
+            Q_EMIT scrollToGroup(closedTitle->property("key").toString());
         }
     });
 }

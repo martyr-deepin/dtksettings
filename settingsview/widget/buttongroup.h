@@ -11,10 +11,10 @@ public:
     explicit ButtonGroup(QWidget *parent = 0);
     ~ButtonGroup();
 
-signals:
+Q_SIGNALS:
     void buttonChecked(int id);
 
-public slots:
+public Q_SLOTS:
     void setCheckedButton(int id);
     void setButtons(const QStringList &texts);
 

@@ -32,9 +32,9 @@ public:
 
     void registerWidget(const QString &viewType, WidgetCreateHandle handle);
     QWidget *createWidget(QPointer<Dtk::Option> option);
-signals:
+Q_SIGNALS:
 
-public slots:
+public Q_SLOTS:
     static QWidget *createTwoColumHandle(Dtk::Option *option, QWidget *rightWidget);
 
 private:

@@ -36,7 +36,7 @@ public:
 protected:
     virtual void doSetOption(const QString &key, const QVariant &value) = 0;
 
-signals:
+Q_SIGNALS:
     void sync();
     void setOption(const QString &key, const QVariant &value);
     void optionChanged(const QString &key, const QVariant &value);

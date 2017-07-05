@@ -20,9 +20,9 @@ public:
     explicit ContentTitle(QWidget *parent = 0);
     ~ContentTitle();
 
-signals:
+Q_SIGNALS:
 
-public slots:
+public Q_SLOTS:
     void setTitle(const QString &title);
 
 private:

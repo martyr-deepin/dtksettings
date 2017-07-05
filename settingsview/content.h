@@ -31,10 +31,10 @@ public:
     ~Content();
 
     WidgetFactory* widgetFactory();
-signals:
+Q_SIGNALS:
     void scrollToGroup(const QString &key);
 
-public slots:
+public Q_SLOTS:
     void onScrollToGroup(const QString &key);
     void updateSettings(QPointer<Dtk::Settings> settings);
 

@@ -21,7 +21,7 @@ public:
     ~ShortcutEdit();
 
     void setShortCut(Qt::KeyboardModifiers modifier, Qt::Key key);
-signals:
+Q_SIGNALS:
     void shortcutChanged(Qt::KeyboardModifiers modifier, Qt::Key key);
 
 protected:

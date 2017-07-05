@@ -1,6 +1,6 @@
 TEMPLATE = lib
 VERSION = 1.0
-CONFIG += c++11 create_pc create_prl no_install_prl
+CONFIG += c++11 create_pc create_prl no_install_prl no_keywords
 DEFINES += LIBDTK_LIBRARY
 
 DEFINES += QT_MESSAGELOGCONTEXT

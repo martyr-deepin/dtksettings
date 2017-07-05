@@ -27,7 +27,7 @@ ButtonGroup::ButtonGroup(QWidget *parent) :
 
     connect(d->group,static_cast<void (QButtonGroup::*)(int)>(&QButtonGroup::buttonReleased),
             this, [=](int){
-        emit buttonChecked(d->group->checkedId());
+        Q_EMIT buttonChecked(d->group->checkedId());
     });
 }
 

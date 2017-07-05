@@ -70,7 +70,7 @@ Navigation::Navigation(QWidget *parent) :
         qDebug() << index.data(NavigationDelegate::NavKeyRole);
         auto key = index.data(NavigationDelegate::NavKeyRole).toString();
         if (!key.isEmpty()) {
-            emit selectedGroup(index.data(NavigationDelegate::NavKeyRole).toString());
+            Q_EMIT selectedGroup(index.data(NavigationDelegate::NavKeyRole).toString());
         }
     });
 

@@ -27,7 +27,7 @@ public:
     virtual QStringList keys() const Q_DECL_OVERRIDE;
     virtual QVariant getOption(const QString &key) const Q_DECL_OVERRIDE;
 
-protected slots:
+protected Q_SLOTS:
     virtual void doSetOption(const QString &key, const QVariant &value) Q_DECL_OVERRIDE;
     virtual void doSync() Q_DECL_OVERRIDE;
 

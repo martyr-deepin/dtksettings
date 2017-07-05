@@ -44,10 +44,10 @@ public:
 
     QVariant getOption(const QString &key) const;
 
-signals:
+Q_SIGNALS:
     void valueChanged(const QString& key, const QVariant& value);
 
-public slots:
+public Q_SLOTS:
     //!
     //! \brief sync
     //! WARNING: sync will block

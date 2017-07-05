@@ -124,7 +124,7 @@ void Option::setValue(QVariant value)
     }
 
     d->value = value;
-    emit valueChanged(value);
+    Q_EMIT valueChanged(value);
 }
 
 void Option::setData(const QString &dataType, QVariant value)
@@ -137,7 +137,7 @@ void Option::setData(const QString &dataType, QVariant value)
 
     d->datas.insert(dataType, value);
 
-    emit dataChanged(dataType, value);
+    Q_EMIT dataChanged(dataType, value);
 }
 
 void Option::parseJson(const QString &prefixKey, const QJsonObject &option)

@@ -37,9 +37,9 @@ public:
     QList<QPointer<Option> > options() const;
 
     static QPointer<Group> fromJson(const QString &prefixKey, const QJsonObject &group);
-signals:
+Q_SIGNALS:
 
-public slots:
+public Q_SLOTS:
 
 private:
     void parseJson(const QString &prefixKey, const QJsonObject &group);

@@ -8,6 +8,8 @@ include($$PWD/../common/lib.pri)
 
 QT       += widgets
 
+CONFIG += no_keywords
+
 TARGET = dtksettingsview
 TEMPLATE = lib
 

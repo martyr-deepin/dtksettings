@@ -42,11 +42,11 @@ public:
     bool isHidden() const;
 
     static QPointer<Option> fromJson(const QString &prefixKey, const QJsonObject &group);
-signals:
+Q_SIGNALS:
     void valueChanged(QVariant value);
     void dataChanged(const QString &dataType, QVariant value);
 
-public slots:
+public Q_SLOTS:
     void setValue(QVariant value);
     void setData(const QString &dataType, QVariant value);
 
