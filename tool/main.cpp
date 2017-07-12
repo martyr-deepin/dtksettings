@@ -91,7 +91,7 @@ int main(int argc, char *argv[])
         }
     }
 
-    transtaleMaps.insert("reset_button_name", "Restore to default");
+    transtaleMaps.insert("reset_button_name", "Restore Defaults");
 
     QString cppCode;
     for (auto key : transtaleMaps.keys()) {

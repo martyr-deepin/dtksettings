@@ -126,7 +126,7 @@
     </message>
     <message>
         <location filename="../translation.cpp" line="29"/>
-        <source>Basic settings</source>
+        <source>Basic</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -151,7 +151,7 @@
     </message>
     <message>
         <location filename="../translation.cpp" line="35"/>
-        <source>Restore to default</source>
+        <source>Restore Defaults</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -192,6 +192,14 @@
     <message>
         <location filename="../translation.cpp" line="43"/>
         <source>Previous Tab</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SettingsDialog</name>
+    <message>
+        <location filename="../settingsdialog.cpp" line="32"/>
+        <source>Settings Dialog Example</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

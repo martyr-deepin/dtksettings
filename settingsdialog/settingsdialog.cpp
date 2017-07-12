@@ -29,6 +29,8 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     auto layout = new QHBoxLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
 
+    setWindowTitle(tr("Settings Dialog Example"));
+
     auto settings = Dtk::Settings::fromJsonFile(":/data/settins.json");
     QTemporaryFile tmpFile;
     tmpFile.open();

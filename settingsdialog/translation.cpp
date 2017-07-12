@@ -1,4 +1,4 @@
-﻿#include <settings.h>
+#include <settings.h>
 
 void GenerateSettingTranslate()
 {
@@ -26,13 +26,13 @@ void GenerateSettingTranslate()
     auto group_advance_cursorName = QObject::tr("Cursor");
     auto group_advance_encodingName = QObject::tr("Default encoding");
     auto group_advance_scrollName = QObject::tr("Scroll");
-    auto group_baseName = QObject::tr("Basic settings");
+    auto group_baseName = QObject::tr("Basic");
     auto group_base_fontName = QObject::tr("Font Style");
     auto group_base_themeName = QObject::tr("Theme");
     auto group_shortcutsName = QObject::tr("Shortcuts");
     auto group_shortcuts_ternimalName = QObject::tr("Ternimal");
     auto group_shortcuts_workspaceName = QObject::tr("Workspace");
-    auto reset_button_name = QObject::tr("Restore to default");
+    auto reset_button_name = QObject::tr("Restore Defaults");
     auto shortcuts_ternimal_copyName = QObject::tr("Copy");
     auto shortcuts_ternimal_pasteName = QObject::tr("Paste");
     auto shortcuts_ternimal_scroll_downName = QObject::tr("Scroll down");

@@ -169,7 +169,7 @@ void Content::updateSettings(QPointer<Dtk::Settings> settings)
         }
     }
 
-    auto resetBt = new QPushButton(QObject::tr("Restore to default"));
+    auto resetBt = new QPushButton(QObject::tr("Restore Defaults"));
     resetBt->setObjectName("SettingsContentReset");
     resetBt->setFixedSize(310, 36);
 
